@@ -48,6 +48,7 @@ htop
 
 Displays real-time CPU, memory, and process usage in an interactive
 interface.
+<img width="3024" height="842" alt="image" src="screenshots/htop.png" />
 
 ``` bash
 df -h
@@ -55,6 +56,8 @@ df -h
 
 Shows disk usage across all mounted file systems in a human-readable
 format.
+
+<img width="3024" height="842" alt="image" src="screenshots/disk-usage.png" />
 
 ``` bash
 du -sh /*
@@ -81,6 +84,12 @@ du -sh /* >> /monitoring_logs/system_usage.log
 ```
 
 Captures system metrics and stores them in a log file for analysis.
+
+``` bash
+cat /monitoring_logs/system_usage.log
+```
+
+<img width="3024" height="842" alt="image" src="screenshots/monitoring-logs.png" />
 
 ------------------------------------------------------------------------
 
@@ -121,12 +130,36 @@ chmod 700 /home/mike/workspace
 
 Restricts access so only the owner can read, write, or execute.
 
+```bash
+id Sarah
+id mike
+```
+
+User Management
+
+<img width="3024" height="842" alt="image" src="screenshots/users-sarah-mike.png" />
+
+```bash
+ls -ld /home/Sarah/workspace
+ls -ld /home/mike/workspace
+```
+User Workspace path
+
+<img width="3024" height="842" alt="image" src="screenshots/sarah-mike-workspace.png" />
+
 ``` bash
 chage -M 30 Sarah
 chage -M 30 mike
 ```
 
 Enforces a password expiration policy of 30 days.
+
+``` bash
+chage -l Sarah
+```
+Password Policy
+
+<img width="3024" height="842" alt="image" src="screenshots/sarah-mike-workspace.png" />
 
 ------------------------------------------------------------------------
 
@@ -139,6 +172,8 @@ apt install nginx -y
 
 Installs Apache and Nginx web servers.
 
+> Note: Apache configuration path differs based on OS. Ubuntu uses `/etc/apache2/` instead of `/etc/httpd/`.
+
 ``` bash
 mkdir /backups
 ```
@@ -148,6 +183,8 @@ Creates a directory to store backup files.
 ``` bash
 nano /backup_script.sh
 ```
+
+<img width="3024" height="842" alt="image" src="screenshots/backup_scripts.png" />
 
 ``` bash
 #!/bin/bash
@@ -182,6 +219,20 @@ crontab -e
 Schedules the backup to run automatically every Tuesday at midnight.
 
 ``` bash
+crontab -l
+```
+Cron Job
+
+<img width="3024" height="842" alt="image" src="screenshots/cron-job.png" />
+
+``` bash
+cat /backups/backup.log
+```
+View backup logs 
+
+<img width="3024" height="842" alt="image" src="screenshots/backup-logs.png" />
+
+``` bash
 bash /backup_script.sh
 ```
 
@@ -193,11 +244,20 @@ ls /backups
 
 Lists all generated backup files.
 
+<img width="3024" height="842" alt="image" src="screenshots/backups.png" />
+
+
 ``` bash
 tar -tzf /backups/apache_backup_YYYY-MM-DD.tar.gz
+tar -tzf /backups/nginx_backup_YYYY-MM-DD.tar.gz
 ```
 
 Verifies backup integrity by listing archive contents.
+
+<img width="3024" height="842" alt="image" src="screenshots/apache-backup-logs.png" />
+
+<img width="3024" height="842" alt="image" src="screenshots/nginx-backup-logs.png" />
+
 
 ------------------------------------------------------------------------
 
@@ -218,6 +278,14 @@ Verifies backup integrity by listing archive contents.
 -   Logs are maintained for traceability and validation.
 
 ------------------------------------------------------------------------
+
+## ⚠️ Challenges Faced
+
+- Understanding tar warnings (Removing leading '/')
+- Fixing date command syntax in backup script
+- Ensuring correct file permissions for users
+- Debugging cron job execution
+
 
 ## Git Workflow
 
